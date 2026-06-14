@@ -1,0 +1,23 @@
+.arrow-button {
+  width: 72px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-glass-strong);
+  color: var(--text-primary);
+  transition: all 0.2s;
+  backdrop-filter: blur(8px);
+}
+
+.arrow-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(2px);
+}
+
+.arrow-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}

@@ -1,0 +1,82 @@
+.scan-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.scan-viewfinder {
+  position: relative;
+  margin: 0 0 32px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  max-width: 560px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+}
+
+@media (min-width: 1024px) {
+  .scan-viewfinder {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.scan-preview {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a2a25 0%, #0d1512 100%);
+}
+
+.scan-qr-placeholder {
+  width: 60%;
+  height: 60%;
+  border-radius: 8px;
+}
+
+.scan-corners {
+  position: absolute;
+  inset: 16px;
+  pointer-events: none;
+}
+
+.corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: rgba(255, 255, 255, 0.8);
+  border-style: solid;
+}
+
+.corner.tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
+.corner.tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
+.corner.bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+.corner.br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+.scan-code-section h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.scan-code {
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.scan-underline {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.scan-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 0 16px;
+}

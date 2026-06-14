@@ -1,0 +1,107 @@
+.generate-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 60dvh;
+}
+
+.generate-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 48px;
+}
+
+.generate-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.generate-field label {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.generate-input-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.generate-input-row-reverse {
+  justify-content: flex-end;
+}
+
+.generate-prefix {
+  font-size: 20px;
+  color: var(--accent-green-muted);
+  font-weight: 500;
+}
+
+.generate-suffix {
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+.generate-field input {
+  font-size: 18px;
+  font-weight: 300;
+  flex: 1;
+  min-width: 0;
+}
+
+.generate-field input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.generate-field input[type='number']::-webkit-inner-spin-button,
+.generate-field input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.generate-underline {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+  margin-top: 8px;
+}
+
+.generate-select-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.generate-select {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='white' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.generate-select option {
+  background: #0a1a15;
+  color: white;
+}
+
+.generate-unit {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--text-secondary);
+}
+
+.generate-actions {
+  display: flex;
+  justify-content: center;
+  padding: 48px 0 16px;
+}

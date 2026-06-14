@@ -1,0 +1,34 @@
+.q-logo-img {
+  object-fit: contain;
+}
+
+.q-logo-sm { width: 28px; height: 28px; }
+.q-logo-md { width: 48px; height: 48px; }
+.q-logo-lg { width: 120px; height: 120px; }
+.q-logo-xl { width: 180px; height: 180px; }
+
+.q-logo-glass {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 8px 32px rgba(0,0,0,0.5);
+  backdrop-filter: blur(12px);
+}
+
+.q-logo-glass span {
+  font-weight: 700;
+  background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.5) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.q-logo-glass.q-logo-sm { width: 32px; height: 32px; font-size: 16px; }
+.q-logo-glass.q-logo-md { width: 48px; height: 48px; font-size: 24px; }
+.q-logo-glass.q-logo-lg { width: 120px; height: 120px; font-size: 64px; }
+.q-logo-glass.q-logo-xl { width: 180px; height: 180px; font-size: 96px; }

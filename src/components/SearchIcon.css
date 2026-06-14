@@ -1,0 +1,7 @@
+.search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.25);
+  padding: 8px 0;
+}
