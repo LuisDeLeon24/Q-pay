@@ -1,48 +1,90 @@
 .landing-footer {
   border-top: 1px solid var(--border-glass);
-  padding: 32px 24px;
+  padding: 48px 24px 24px;
 }
 
 @media (min-width: 768px) {
   .landing-footer {
-    padding: 40px;
+    padding: 64px 40px 32px;
   }
 }
 
 .landing-footer-inner {
   max-width: var(--content-max);
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-  text-align: center;
+  margin: 0 auto 40px;
+  display: grid;
+  gap: 40px;
 }
 
 @media (min-width: 768px) {
   .landing-footer-inner {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
+    grid-template-columns: 1fr 2fr;
+    gap: 64px;
   }
 }
 
-.landing-footer-copy {
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.landing-footer-links {
+.landing-footer-brand {
   display: flex;
-  gap: 24px;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.landing-footer-links a {
-  font-size: 13px;
+.landing-footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.landing-footer-tagline {
+  font-size: 14px;
   color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.landing-footer-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .landing-footer-columns {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.landing-footer-col h4 {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.landing-footer-col a {
+  display: block;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
   transition: color 0.2s;
 }
 
-.landing-footer-links a:hover {
+.landing-footer-col a:hover {
   color: var(--text-primary);
+}
+
+.landing-footer-bottom {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-glass);
+  text-align: center;
+}
+
+.landing-footer-bottom p {
+  font-size: 13px;
+  color: var(--text-muted);
 }
