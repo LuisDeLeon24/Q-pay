@@ -1,9 +1,10 @@
 import QLogo from '../QLogo'
+import { useWaitlist } from '../waitlist/WaitlistContext'
 import './HeroSection.css'
 
-const WAITLIST_URL = 'mailto:hola@qpay.app?subject=Join%20Waitlist'
-
 export default function HeroSection() {
+  const { open } = useWaitlist()
+
   return (
     <section className="hero-section">
       <div className="hero-media" aria-hidden="true">
@@ -33,9 +34,9 @@ export default function HeroSection() {
         </p>
 
         <div className="hero-actions animate-fade-up animate-fade-up-delay-3">
-          <a href={WAITLIST_URL} className="hero-cta">
+          <button type="button" onClick={open} className="hero-cta">
             Waitlist
-          </a>
+          </button>
           <a
             href="/app-release.apk"
             download="Q-Pay.apk"

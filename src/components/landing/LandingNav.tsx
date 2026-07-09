@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
+import { useWaitlist } from '../waitlist/WaitlistContext'
 import './LandingNav.css'
 
-const WAITLIST_URL = 'mailto:hola@qpay.app?subject=Join%20Waitlist'
-
 export default function LandingNav() {
+  const { open } = useWaitlist()
+
   return (
     <nav className="landing-nav">
       <Link to="/" className="landing-nav-brand">
@@ -18,9 +19,9 @@ export default function LandingNav() {
         >
           Descargar app
         </a>
-        <a href={WAITLIST_URL} className="landing-nav-cta">
+        <button type="button" onClick={open} className="landing-nav-cta">
           Waitlist
-        </a>
+        </button>
       </div>
     </nav>
   )

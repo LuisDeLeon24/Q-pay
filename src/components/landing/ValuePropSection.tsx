@@ -1,6 +1,5 @@
+import { useWaitlist } from '../waitlist/WaitlistContext'
 import './ValuePropSection.css'
-
-const WAITLIST_URL = 'mailto:hola@qpay.app?subject=Join%20Waitlist'
 
 const SIDES = [
   {
@@ -34,6 +33,8 @@ const SIDES = [
 ]
 
 export default function ValuePropSection() {
+  const { open } = useWaitlist()
+
   return (
     <section id="valor" className="value-section">
       <div className="value-header animate-fade-up">
@@ -41,9 +42,9 @@ export default function ValuePropSection() {
           <span className="value-header-muted">Un ecosistema,</span> dos formas
           de ganar
         </h2>
-        <a href={WAITLIST_URL} className="value-header-cta">
+        <button type="button" onClick={open} className="value-header-cta">
           Únete a la waitlist
-        </a>
+        </button>
       </div>
 
       <div className="value-showcases">
