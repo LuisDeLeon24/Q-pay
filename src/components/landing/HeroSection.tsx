@@ -1,10 +1,8 @@
+import { Link } from 'react-router-dom'
 import QLogo from '../QLogo'
-import { useWaitlist } from '../waitlist/WaitlistContext'
 import './HeroSection.css'
 
 export default function HeroSection() {
-  const { open } = useWaitlist()
-
   return (
     <section className="hero-section">
       <div className="hero-media" aria-hidden="true">
@@ -34,9 +32,9 @@ export default function HeroSection() {
         </p>
 
         <div className="hero-actions animate-fade-up animate-fade-up-delay-3">
-          <button type="button" onClick={open} className="hero-cta">
+          <Link to="/waitlist" className="hero-cta">
             Waitlist
-          </button>
+          </Link>
           <a
             href="/app-release.apk"
             download="Q-Pay.apk"

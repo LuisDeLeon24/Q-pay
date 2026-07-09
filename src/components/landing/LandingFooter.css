@@ -64,8 +64,7 @@
   margin-bottom: 16px;
 }
 
-.landing-footer-col a,
-.landing-footer-linkbtn {
+.landing-footer-col a {
   display: block;
   font-size: 14px;
   color: var(--text-secondary);
@@ -73,14 +72,7 @@
   transition: color 0.2s;
 }
 
-.landing-footer-linkbtn {
-  padding: 0;
-  text-align: left;
-  font-weight: 400;
-}
-
-.landing-footer-col a:hover,
-.landing-footer-linkbtn:hover {
+.landing-footer-col a:hover {
   color: var(--text-primary);
 }
 

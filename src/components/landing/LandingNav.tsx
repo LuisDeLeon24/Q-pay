@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom'
-import { useWaitlist } from '../waitlist/WaitlistContext'
 import './LandingNav.css'
 
 export default function LandingNav() {
-  const { open } = useWaitlist()
-
   return (
     <nav className="landing-nav">
       <Link to="/" className="landing-nav-brand">
@@ -19,9 +16,9 @@ export default function LandingNav() {
         >
           Descargar app
         </a>
-        <button type="button" onClick={open} className="landing-nav-cta">
+        <Link to="/waitlist" className="landing-nav-cta">
           Waitlist
-        </button>
+        </Link>
       </div>
     </nav>
   )

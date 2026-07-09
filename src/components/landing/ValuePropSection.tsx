@@ -1,4 +1,4 @@
-import { useWaitlist } from '../waitlist/WaitlistContext'
+import { Link } from 'react-router-dom'
 import './ValuePropSection.css'
 
 const SIDES = [
@@ -33,8 +33,6 @@ const SIDES = [
 ]
 
 export default function ValuePropSection() {
-  const { open } = useWaitlist()
-
   return (
     <section id="valor" className="value-section">
       <div className="value-header animate-fade-up">
@@ -42,9 +40,9 @@ export default function ValuePropSection() {
           <span className="value-header-muted">Un ecosistema,</span> dos formas
           de ganar
         </h2>
-        <button type="button" onClick={open} className="value-header-cta">
+        <Link to="/waitlist" className="value-header-cta">
           Únete a la waitlist
-        </button>
+        </Link>
       </div>
 
       <div className="value-showcases">

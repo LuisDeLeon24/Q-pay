@@ -1,20 +1,21 @@
--- Q-Pay · Tabla de waitlist
+-- Q-Pay · Tabla de waitlist (validación de producto)
 -- Ejecuta este script en Supabase: Dashboard -> SQL Editor -> New query -> Run
 
 create table if not exists public.waitlist (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz not null default now(),
-  name text not null,
+  name text default '',
   email text not null unique,
   role text not null default 'solicitante'
     check (role in ('solicitante', 'inversor')),
-  -- Mini estudio de mercado (opcionales)
   interest text,
   experience text,
   concern text
 );
 
--- Si ya habías creado la tabla antes, corre esto para agregar las columnas nuevas:
+-- Migración idempotente para tablas existentes
+alter table public.waitlist alter column name drop not null;
+alter table public.waitlist alter column name set default '';
 alter table public.waitlist add column if not exists interest text;
 alter table public.waitlist add column if not exists experience text;
 alter table public.waitlist add column if not exists concern text;

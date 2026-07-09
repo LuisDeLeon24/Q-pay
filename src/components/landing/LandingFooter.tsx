@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom'
 import QLogo from '../QLogo'
-import { useWaitlist } from '../waitlist/WaitlistContext'
 import './LandingFooter.css'
 
 export default function LandingFooter() {
-  const { open } = useWaitlist()
-
   return (
     <footer className="landing-footer">
       <div className="landing-footer-inner">
@@ -26,9 +23,7 @@ export default function LandingFooter() {
             <a href="#features">Características</a>
             <a href="#como-funciona">Cómo funciona</a>
             <a href="#seguridad">Seguridad</a>
-            <button type="button" className="landing-footer-linkbtn" onClick={open}>
-              Waitlist
-            </button>
+            <Link to="/waitlist">Waitlist</Link>
           </div>
 
           <div className="landing-footer-col">
