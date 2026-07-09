@@ -312,25 +312,6 @@
   color: var(--accent-green);
 }
 
-.waitlist-bottom-cta {
-  text-align: center;
-}
-
-.waitlist-bottom-inner {
-  max-width: 560px;
-}
-
-.waitlist-bottom-sub {
-  font-size: 15px;
-  font-weight: 300;
-  color: var(--text-secondary);
-  margin-bottom: 28px;
-  margin-top: -24px;
-}
-
-.waitlist-bottom-cta .waitlist-form {
-  text-align: left;
-}
 
 .waitlist-footer {
   padding: 24px;
