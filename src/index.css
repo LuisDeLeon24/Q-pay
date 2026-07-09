@@ -11,6 +11,9 @@
   --accent-green: #3ecf7a;
   --accent-green-muted: #6b9a7e;
   --accent-green-dark: #1a4d35;
+  --bottle-top: #1a4a38;
+  --bottle-bottom: #0c2e22;
+  --grad-bottle: linear-gradient(180deg, var(--bottle-top) 0%, var(--bottle-bottom) 100%);
   --accent-yellow: #e8c547;
   --accent-red: #c46b6b;
   --progress-green: #2ecc71;
@@ -45,7 +48,7 @@ body,
 
 body {
   font-family: var(--font);
-  background: var(--bg-top);
+  background: #000;
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;

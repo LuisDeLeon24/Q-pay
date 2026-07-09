@@ -1,4 +1,9 @@
 .landing-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -6,6 +11,7 @@
   padding: 20px 24px;
   max-width: var(--content-max);
   margin: 0 auto;
+  background: transparent;
 }
 
 @media (min-width: 768px) {
@@ -53,46 +59,44 @@
 .landing-nav-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: clamp(8px, 2vw, 14px);
   flex-shrink: 0;
 }
 
 .landing-nav-download {
-  display: none;
-  padding: 10px 20px;
-  border-radius: var(--radius-pill);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  border: 1px solid var(--border-glass);
-  transition: all 0.2s;
-}
-
-@media (min-width: 1024px) {
-  .landing-nav-download {
-    display: inline-flex;
-  }
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: clamp(8px, 1.5vw, 12px) clamp(10px, 2vw, 16px);
+  font-size: clamp(13px, 1.8vw, 15px);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.55);
+  background: transparent;
+  border: none;
+  transition: color 0.2s ease;
 }
 
 .landing-nav-download:hover {
-  color: var(--text-primary);
-  border-color: var(--border-glass-strong);
-  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+  background: transparent;
 }
 
 .landing-nav-cta {
-  padding: 10px 24px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: clamp(10px, 1.8vw, 14px) clamp(18px, 3.5vw, 28px);
   border-radius: var(--radius-pill);
-  font-size: 14px;
+  font-size: clamp(13px, 1.8vw, 16px);
   font-weight: 500;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border-glass-strong);
-  backdrop-filter: blur(12px);
-  transition: all 0.2s;
+  letter-spacing: 0.01em;
+  color: #f5f0e3;
+  background: var(--bottle-top);
+  border: none;
+  transition: background 0.2s ease;
   white-space: nowrap;
 }
 
 .landing-nav-cta:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: var(--bottle-bottom);
 }

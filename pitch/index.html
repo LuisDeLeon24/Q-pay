@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Q-Pay — Pitch Deck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Hanken+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" />
+    <link rel="stylesheet" href="css/qpay-theme.css?v=4" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- 1. Portada -->
+        <section class="slide-cover" data-background-color="transparent"
+          data-notes="Bienvenida breve. Presenta Q-Pay como la capa de confianza para préstamos entre personas cercanas. Menciona que hoy 0% comisión y producto funcional en web + Android.">
+          <div class="brand">
+            <span class="q-mark">Q</span>
+            <span class="wordmark">Pay</span>
+          </div>
+          <span class="section-label">Pitch deck · 2026</span>
+          <h1>Finanzas informales, estandarizadas</h1>
+          <p class="tagline">
+            &ldquo;Estandarizando las finanzas informales y ahorrándote dolores de cabeza&rdquo;
+          </p>
+          <p class="meta">
+            <span class="placeholder">[EDITAR: Tu nombre]</span> · Julio 2026 · hola@qpay.app
+          </p>
+        </section>
+
+        <!-- 2. El problema -->
+        <section data-background-color="transparent"
+          data-notes="Enfatiza que el problema no es prestar dinero, sino la falta de estructura. Cada pain point debe resonar con experiencias reales del público. Pregunta retórica: ¿cuántos conflictos familiares empiezan por un préstamo mal documentado?">
+          <span class="section-label">El problema</span>
+          <h2>Los préstamos informales generan fricción</h2>
+          <p>Entre familiares y amigos, un acuerdo de palabra puede complicarse rápidamente.</p>
+          <div class="grid-2 problem-solution">
+            <div class="glass-card fragment fade-up">
+              <p class="problem">Se me olvida quién me debe</p>
+              <p class="solution">Sin registro centralizado, las deudas se pierden en la memoria.</p>
+            </div>
+            <div class="glass-card fragment fade-up">
+              <p class="problem">Los acuerdos verbales generan conflictos</p>
+              <p class="solution">Monto, plazo e interés quedan ambiguos desde el inicio.</p>
+            </div>
+            <div class="glass-card fragment fade-up">
+              <p class="problem">Es incómodo cobrar a un familiar</p>
+              <p class="solution">Nadie quiere ser el &ldquo;malvado&rdquo; recordando cuotas pendientes.</p>
+            </div>
+            <div class="glass-card fragment fade-up">
+              <p class="problem">Compartir una oferta es complicado</p>
+              <p class="solution">WhatsApp, capturas y mensajes largos no escalan.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. La solución -->
+        <section data-background-color="transparent"
+          data-notes="Posiciona Q-Pay como infraestructura ligera (PaaS), no un banco. La clave: formalizar sin burocracia ni perder la cercanía. La plataforma estandariza cada préstamo y monetiza con una comisión por préstamo (ver Modelo de negocio).">
+          <span class="section-label">La solución</span>
+          <h2>Q-Pay: orden sin perder la confianza</h2>
+          <p>Una capa de estandarización para préstamos P2P entre personas de confianza.</p>
+          <div class="solution-hero">
+            <div class="glass-card fragment fade-right">
+              <h3>Documenta</h3>
+              <p>Registra monto, plazo e interés desde el primer acuerdo.</p>
+            </div>
+            <div class="glass-card fragment fade-up">
+              <h3>Comparte</h3>
+              <p>Genera QR y código único para que la otra persona acepte al instante.</p>
+            </div>
+            <div class="glass-card fragment fade-left">
+              <h3>Da seguimiento</h3>
+              <p>Visualiza cuotas, progreso y estado sin tener que recordarlo tú.</p>
+            </div>
+          </div>
+          <div class="solution-hero" style="margin-top: 16px;">
+            <div class="big-stat fragment fade-up">
+              0%
+              <span>Fricción para cerrar un acuerdo</span>
+            </div>
+            <div class="big-stat fragment fade-up">
+              QR
+              <span>Ofertas compartibles al instante</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Producto -->
+        <section data-background-color="transparent"
+          data-notes="Muestra las 3 capacidades core. Si tienes demo en vivo, esta es la diapositiva ideal para hacerla. Menciona que ya existe app web y APK Android.">
+          <span class="section-label">Producto</span>
+          <h2>¿Por qué Q-Pay?</h2>
+          <div class="grid-3">
+            <div class="glass-card fragment fade-up">
+              <h3>Registrar préstamos informales</h3>
+              <p>Documenta acuerdos entre personas con montos, plazos e interés claros.</p>
+            </div>
+            <div class="glass-card fragment fade-up">
+              <h3>Compartir ofertas con QR</h3>
+              <p>Genera un código único para que otros acepten tu oferta al instante.</p>
+            </div>
+            <div class="glass-card fragment fade-up">
+              <h3>Seguimiento de cuotas e interés</h3>
+              <p>Visualiza el progreso de cada préstamo y el estado de cada cuota.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. Cómo funciona -->
+        <section data-background-color="transparent"
+          data-notes="Recorre los 4 pasos en orden. El flujo completo toma menos de 2 minutos. Ideal para mostrar screenshots si los tienes disponibles.">
+          <span class="section-label">Producto</span>
+          <h2>Cómo funciona</h2>
+          <p>De un acuerdo informal a un plan claro en cuatro pasos.</p>
+          <div class="step-list">
+            <div class="step-item fragment fade-up">
+              <div class="step-number">1</div>
+              <h3>Inicia sesión</h3>
+              <p>Entra con Gmail y completa tu registro en segundos.</p>
+            </div>
+            <div class="step-item fragment fade-up">
+              <div class="step-number">2</div>
+              <h3>Genera tu oferta</h3>
+              <p>Define monto, plazo e interés. Tú decides las condiciones.</p>
+            </div>
+            <div class="step-item fragment fade-up">
+              <div class="step-number">3</div>
+              <h3>Comparte el QR</h3>
+              <p>Envía el código para que la otra persona acepte tu oferta.</p>
+            </div>
+            <div class="step-item fragment fade-up">
+              <div class="step-number">4</div>
+              <h3>Da seguimiento</h3>
+              <p>Revisa cuotas, progreso y estado de cada préstamo.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. Mercado -->
+        <section data-background-color="transparent"
+          data-notes="Contextualiza el mercado de finanzas informales en LATAM. La mayoría de préstamos entre personas no pasan por bancos. Usa datos propios o de fuentes como CGAP/World Bank para validar TAM. Los números son placeholders editables.">
+          <span class="section-label">Mercado</span>
+          <h2>Oportunidad de mercado</h2>
+          <p>Millones de préstamos informales ocurren cada año sin ninguna herramienta dedicada.</p>
+          <div class="market-grid">
+            <div class="glass-card market-item fragment fade-up">
+              <div class="label">TAM</div>
+              <div class="value placeholder">[EDITAR: $XXB]</div>
+              <p class="desc">Préstamos informales en LATAM (familia, amigos, comunidad)</p>
+            </div>
+            <div class="glass-card market-item fragment fade-up">
+              <div class="label">SAM</div>
+              <div class="value placeholder">[EDITAR: $XXB]</div>
+              <p class="desc">Usuarios digitales que prestan/piden entre personas de confianza</p>
+            </div>
+            <div class="glass-card market-item fragment fade-up">
+              <div class="label">SOM</div>
+              <div class="value placeholder">[EDITAR: $XXM]</div>
+              <p class="desc">Mercado alcanzable en 3 años (México + expansión regional)</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. Audiencia (ICP) -->
+        <section data-background-color="transparent"
+          data-notes="Define el ICP: no es para crédito comercial ni microfinanzas. Es para relaciones de confianza donde el dinero puede dañar el vínculo si no hay claridad.">
+          <span class="section-label">Audiencia</span>
+          <h2>Hecho para acuerdos entre personas de confianza</h2>
+          <div class="grid-3">
+            <div class="glass-card fragment fade-up">
+              <h3>Familia</h3>
+              <p>Préstamos entre parientes con condiciones claras. Evita malentendidos en reuniones familiares.</p>
+            </div>
+            <div class="glass-card fragment fade-up">
+              <h3>Amigos cercanos</h3>
+              <p>Favores con plazo definido. Presta o pide sin que el dinero opaque la amistad.</p>
+            </div>
+            <div class="glass-card fragment fade-up">
+              <h3>Compañeros de convivencia</h3>
+              <p>Gastos compartidos formalizados. Ideal para roommates y gastos del hogar.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. Modelo de negocio -->
+        <section data-background-color="transparent"
+          data-notes="Q-Pay es una plataforma como servicio (PaaS): la infraestructura sobre la que se estandarizan los préstamos informales. Monetizamos con una comisión sobre cada préstamo gestionado, de modo que los ingresos escalan con el volumen prestado. Ajusta el porcentaje de comisión a tu estrategia real.">
+          <span class="section-label">Modelo de negocio</span>
+          <h2>Plataforma como servicio (PaaS)</h2>
+          <p>
+            Q-Pay es la infraestructura que estandariza cada préstamo informal. Ganamos con una
+            comisión sobre cada préstamo gestionado en la plataforma.
+          </p>
+          <div class="biz-grid">
+            <div class="glass-card fragment fade-right">
+              <h3>La plataforma (PaaS)</h3>
+              <ul>
+                <li>Infraestructura para documentar, compartir y dar seguimiento a préstamos</li>
+                <li>Web + app móvil, lista para escalar</li>
+                <li>Usuarios y aliados operan sobre nuestra capa</li>
+              </ul>
+            </div>
+            <div class="glass-card fragment fade-left">
+              <h3>Comisión por préstamo</h3>
+              <ul>
+                <li>Cobramos una comisión sobre <strong>cada préstamo</strong> gestionado</li>
+                <li class="placeholder">[EDITAR: X % por préstamo]</li>
+                <li>Ingresos que crecen con el volumen prestado</li>
+              </ul>
+            </div>
+          </div>
+          <p class="subtitle">
+            <span class="accent">Ingresos</span> = comisión
+            <span class="placeholder">[X %]</span> &times; volumen de préstamos gestionados
+          </p>
+        </section>
+
+        <!-- 9. Tracción -->
+        <section data-background-color="transparent"
+          data-notes="Combina métricas del producto con tracción real. Los stats de la izquierda son del producto; los de la derecha son placeholders para tus números reales de usuarios, préstamos y MRR.">
+          <span class="section-label">Tracción</span>
+          <h2>Métricas clave</h2>
+          <div class="stat-grid">
+            <div class="stat-item fragment fade-up">
+              <span class="stat-value">100%</span>
+              <span class="stat-label">Finanzas informales, estandarizadas</span>
+            </div>
+            <div class="stat-item fragment fade-up">
+              <span class="stat-value">0%</span>
+              <span class="stat-label">Costos ocultos para el usuario</span>
+            </div>
+            <div class="stat-item fragment fade-up">
+              <span class="stat-value">QR</span>
+              <span class="stat-label">Para compartir ofertas al instante</span>
+            </div>
+            <div class="stat-item fragment fade-up">
+              <span class="stat-value">24/7</span>
+              <span class="stat-label">Seguimiento de cuotas</span>
+            </div>
+          </div>
+          <div class="stat-grid" style="margin-top: 16px;">
+            <div class="stat-item fragment fade-up">
+              <span class="stat-value placeholder">[EDITAR]</span>
+              <span class="stat-label">Usuarios registrados</span>
+            </div>
+            <div class="stat-item fragment fade-up">
+              <span class="stat-value placeholder">[EDITAR]</span>
+              <span class="stat-label">Préstamos activos</span>
+            </div>
+            <div class="stat-item fragment fade-up">
+              <span class="stat-value placeholder">[EDITAR]</span>
+              <span class="stat-label">Volumen gestionado</span>
+            </div>
+            <div class="stat-item fragment fade-up">
+              <span class="stat-value placeholder">[EDITAR]</span>
+              <span class="stat-label">MRR</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10. Competencia -->
+        <section data-background-color="transparent"
+          data-notes="La tabla muestra por qué Q-Pay ocupa un nicho único: no compite con bancos ni con apps P2P comerciales. El diferenciador es el enfoque en confianza + simplicidad + costo accesible (pago por uso, sin mensualidades).">
+          <span class="section-label">Competencia</span>
+          <h2>Posicionamiento competitivo</h2>
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Bancos / Sofipos</th>
+                <th>Apps P2P</th>
+                <th>Excel / WhatsApp</th>
+                <th>Q-Pay</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="fragment fade-up">
+                <td>Sin burocracia</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+              </tr>
+              <tr class="fragment fade-up">
+                <td>Enfoque informal / confianza</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+              </tr>
+              <tr class="fragment fade-up">
+                <td>Seguimiento de cuotas</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+                <td class="cross">✗</td>
+                <td class="check">✓</td>
+              </tr>
+              <tr class="fragment fade-up">
+                <td>Compartir ofertas (QR)</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+                <td class="check">✓</td>
+              </tr>
+              <tr class="fragment fade-up highlight">
+                <td>Costo accesible (pago por uso)</td>
+                <td class="cross">✗</td>
+                <td class="cross">✗</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- 11. Equipo -->
+        <section data-background-color="transparent"
+          data-notes="Presenta al equipo con foco en por qué son la persona indicada para resolver este problema. Menciona experiencia en fintech, producto o comunidades LATAM si aplica.">
+          <span class="section-label">Equipo</span>
+          <h2>Quiénes somos</h2>
+          <div class="team-grid">
+            <div class="glass-card team-card fragment fade-up">
+              <div class="team-avatar">Foto</div>
+              <h3 class="placeholder">[EDITAR: Nombre]</h3>
+              <p class="role">CEO / Fundador</p>
+              <p class="placeholder">[EDITAR: Bio breve — experiencia relevante]</p>
+            </div>
+            <div class="glass-card team-card fragment fade-up">
+              <div class="team-avatar">Foto</div>
+              <h3 class="placeholder">[EDITAR: Nombre]</h3>
+              <p class="role">CTO / Co-fundador</p>
+              <p class="placeholder">[EDITAR: Bio breve — experiencia relevante]</p>
+            </div>
+            <div class="glass-card team-card fragment fade-up">
+              <div class="team-avatar">Foto</div>
+              <h3 class="placeholder">[EDITAR: Nombre]</h3>
+              <p class="role">[EDITAR: Rol]</p>
+              <p class="placeholder">[EDITAR: Bio breve — experiencia relevante]</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 12. Roadmap -->
+        <section data-background-color="transparent"
+          data-notes="Muestra visión a 12 meses. Ajusta hitos según tu roadmap real. Inversores quieren ver claridad de prioridades, no una lista infinita de features.">
+          <span class="section-label">Roadmap</span>
+          <h2>Próximos 12 meses</h2>
+          <div class="roadmap-grid">
+            <div class="glass-card roadmap-item fragment fade-up">
+              <div class="quarter">Q1 2026</div>
+              <h3>MVP sólido</h3>
+              <ul>
+                <li>App web + Android</li>
+                <li>Flujo QR completo</li>
+                <li>Primeros 100 usuarios</li>
+              </ul>
+            </div>
+            <div class="glass-card roadmap-item fragment fade-up">
+              <div class="quarter">Q2 2026</div>
+              <h3>Crecimiento</h3>
+              <ul>
+                <li>Recordatorios automáticos</li>
+                <li>Onboarding optimizado</li>
+                <li class="placeholder">[EDITAR: meta de usuarios]</li>
+              </ul>
+            </div>
+            <div class="glass-card roadmap-item fragment fade-up">
+              <div class="quarter">Q3 2026</div>
+              <h3>Monetización</h3>
+              <ul>
+                <li>Plan Premium</li>
+                <li>Contratos digitales</li>
+                <li class="placeholder">[EDITAR: integración de pagos]</li>
+              </ul>
+            </div>
+            <div class="glass-card roadmap-item fragment fade-up">
+              <div class="quarter">Q4 2026</div>
+              <h3>Expansión</h3>
+              <ul>
+                <li>iOS</li>
+                <li class="placeholder">[EDITAR: mercado #2]</li>
+                <li class="placeholder">[EDITAR: partnerships]</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 13. The Ask -->
+        <section class="slide-ask" data-background-color="transparent"
+          data-notes="Cierra con claridad: cuánto buscas, para qué, y cuál es el siguiente paso. Deja tiempo para preguntas. Repite el contacto hola@qpay.app.">
+          <span class="section-label">The Ask</span>
+          <h2>Estamos levantando</h2>
+          <p class="ask-amount placeholder">[EDITAR: $XXX,XXX]</p>
+          <p class="subtitle">Ronda pre-seed / seed · <span class="placeholder">[EDITAR: instrumento]</span></p>
+          <div class="ask-uses">
+            <div class="glass-card fragment fade-up">
+              <h3>Producto</h3>
+              <p class="placeholder">[EDITAR: 40% — features premium, pagos]</p>
+            </div>
+            <div class="glass-card fragment fade-up">
+              <h3>Crecimiento</h3>
+              <p class="placeholder">[EDITAR: 35% — marketing, adquisición]</p>
+            </div>
+            <div class="glass-card fragment fade-up">
+              <h3>Equipo</h3>
+              <p class="placeholder">[EDITAR: 25% — contrataciones clave]</p>
+            </div>
+          </div>
+          <p class="tagline" style="font-size: 0.55em; margin-bottom: 0;">
+            ¿Listo para estandarizar las finanzas informales?
+          </p>
+          <a href="mailto:hola@qpay.app" class="contact-link">hola@qpay.app</a>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/search/search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/zoom/zoom.js"></script>
+    <script>
+      document.querySelectorAll('.reveal .slides > section').forEach(function (s, i) {
+        s.dataset.folio = String(i + 1).padStart(2, '0');
+      });
+      Reveal.initialize({
+        hash: true,
+        slideNumber: false,
+        progress: true,
+        center: false,
+        width: 1280,
+        height: 720,
+        margin: 0,
+        transition: 'fade',
+        transitionSpeed: 'slow',
+        backgroundTransition: 'fade',
+        plugins: [RevealNotes, RevealSearch, RevealZoom],
+      });
+    </script>
+  </body>
+</html>

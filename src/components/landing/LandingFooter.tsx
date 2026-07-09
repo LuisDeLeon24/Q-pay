@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import QLogo from '../QLogo'
 import './LandingFooter.css'
 
+const WAITLIST_URL = 'mailto:hola@qpay.app?subject=Join%20Waitlist'
+
 export default function LandingFooter() {
   return (
     <footer className="landing-footer">
@@ -19,10 +21,11 @@ export default function LandingFooter() {
         <div className="landing-footer-columns">
           <div className="landing-footer-col">
             <h4>Producto</h4>
-            <a href="#beneficios">Beneficios</a>
+            <a href="#valor">Propuesta de valor</a>
+            <a href="#features">Características</a>
             <a href="#como-funciona">Cómo funciona</a>
-            <a href="#faq">FAQ</a>
-            <Link to="/app/login">Empezar gratis</Link>
+            <a href="#seguridad">Seguridad</a>
+            <a href={WAITLIST_URL}>Waitlist</a>
           </div>
 
           <div className="landing-footer-col">
@@ -30,13 +33,10 @@ export default function LandingFooter() {
             <a href="/app-release.apk" download="Q-Pay.apk">
               App Android (APK)
             </a>
-            <Link to="/app/login">Versión web</Link>
           </div>
 
           <div className="landing-footer-col">
             <h4>Legal</h4>
-            <Link to="/app/login">Privacidad</Link>
-            <Link to="/app/login">Términos</Link>
             <a href="mailto:hola@qpay.app">Contacto</a>
           </div>
         </div>
