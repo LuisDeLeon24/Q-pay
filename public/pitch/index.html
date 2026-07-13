@@ -216,7 +216,7 @@
         <!-- 8. Mercado -->
         <section
           data-background-color="#000000"
-          data-notes="Contextualiza el mercado P2P en LATAM. Los números son placeholders editables."
+          data-notes="Contextualiza el mercado P2P en Guatemala + Centroamérica. Cifras estimadas con fuentes en .agents/pitch-data.md: TAM bottom-up de préstamos informales, SAM de gasto en adquisición, SOM de ARR capturable en 3 años. Preséntalas como estimación propia con fuentes, no como dato oficial."
         >
           <span class="section-label">Mercado</span>
           <h2>Oportunidad de mercado</h2>
@@ -224,18 +224,18 @@
           <div class="market-grid">
             <div class="glass-card market-item fragment fade-up">
               <div class="label">TAM</div>
-              <div class="value placeholder">[EDITAR: $XXB]</div>
-              <p class="desc">Préstamos P2P informales en LATAM (familia, amigos, comunidad)</p>
+              <div class="value">~$300M</div>
+              <p class="desc">Préstamos informales entre personas al año en Centroamérica (familia, amigos, comunidad)</p>
             </div>
             <div class="glass-card market-item fragment fade-up">
               <div class="label">SAM</div>
-              <div class="value placeholder">[EDITAR: $XXB]</div>
-              <p class="desc">Gasto anual de bancos y Sofipos digitales en adquisición de clientes</p>
+              <div class="value">~$40M</div>
+              <p class="desc">Gasto anual de bancos y fintechs de Guatemala en adquisición de clientes</p>
             </div>
             <div class="glass-card market-item fragment fade-up">
               <div class="label">SOM</div>
-              <div class="value placeholder">[EDITAR: $XXM]</div>
-              <p class="desc">Bancos/Sofipos alcanzables en 3 años (México + expansión regional)</p>
+              <div class="value">~$2M ARR</div>
+              <p class="desc">5–6 instituciones alcanzables en 3 años (Guatemala + expansión Centroamérica)</p>
             </div>
           </div>
         </section>
@@ -272,10 +272,10 @@
         <!-- 10. Modelo de negocio -->
         <section
           data-background-color="#000000"
-          data-notes="Clave: 0% comisión al usuario final (diferenciador confirmado). El revenue viene del banco, por reducirle el CAC. Q-Pay es capital-light, no custodia fondos ni asume riesgo. La estructura exacta de fee y la comparación de CAC son placeholders a completar."
+          data-notes="Clave: 0% comisión al usuario final (diferenciador confirmado). El revenue viene del banco, por reducirle el CAC. Q-Pay es capital-light, no custodia fondos ni asume riesgo. Fee híbrido (SaaS + por adquisición) y CAC ~$150 → ~$15 son benchmarks de industria (BaaS/neobancos), no medidos aún en Guatemala; fuentes en .agents/pitch-data.md."
         >
           <span class="section-label">Modelo de negocio</span>
-          <h2>Cómo Q-Pay gana dinero</h2>
+          <h2>Revenue</h2>
           <p>
             <strong>0% de comisión al usuario.</strong> Cobramos al banco por lo que más le duele:
             <strong>el costo de adquirir un cliente nuevo.</strong>
@@ -286,7 +286,7 @@
               <ul>
                 <li><strong>0% comisión</strong> para quien presta o pide</li>
                 <li>El banco paga por cada cliente nuevo adquirido vía Q-Pay</li>
-                <li class="placeholder">[EDITAR: estructura de fee — por adquisición / licencia SaaS / híbrido]</li>
+                <li>Modelo híbrido: licencia SaaS mensual + fee por cliente nuevo adquirido</li>
               </ul>
             </div>
             <div class="glass-card fragment fade-left">
@@ -300,8 +300,8 @@
           </div>
           <p class="subtitle">
             CAC tradicional del banco
-            <span class="placeholder">[EDITAR: $XX]</span> &rarr; CAC vía Q-Pay
-            <span class="placeholder">[EDITAR: $X]</span> —
+            <span>~$350</span> &rarr; CAC vía Q-Pay
+            <span>~$130</span> —
             <span class="accent">ganamos cuando el banco ahorra</span>
           </p>
         </section>
@@ -408,63 +408,20 @@
           <h2>Quiénes somos</h2>
           <div class="team-grid team-grid--duo">
             <div class="glass-card team-card fragment fade-up">
-              <div class="team-avatar">Foto</div>
+              <div class="team-avatar">
+                <img src="/assets/Luis%20De%20Le%C3%B3n.png" alt="Luis De León" />
+              </div>
               <h3>Luis De León</h3>
               <p class="role">CEO</p>
-              <p class="placeholder">[EDITAR: bio breve — experiencia relevante]</p>
+              <p>Software developer, Builder</p>
             </div>
             <div class="glass-card team-card fragment fade-up">
-              <div class="team-avatar">Foto</div>
+              <div class="team-avatar">
+                <img src="/assets/Gabriel%20Hurtarte.jpeg" alt="Gabriel Hurtarte" />
+              </div>
               <h3>Gabriel Hurtarte</h3>
               <p class="role">CTO</p>
-              <p class="placeholder">[EDITAR: bio breve — experiencia relevante]</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 14. Roadmap -->
-        <section
-          data-background-color="#000000"
-          data-notes="Visión a 12 meses. Ajusta hitos según roadmap real."
-        >
-          <span class="section-label">Roadmap</span>
-          <h2>Del producto vivo al primer banco</h2>
-          <div class="roadmap-grid">
-            <div class="glass-card roadmap-item fragment fade-up">
-              <div class="quarter">Q1 2026</div>
-              <h3>MVP validado</h3>
-              <ul>
-                <li>App web + Android en vivo</li>
-                <li>Flujo QR completo</li>
-                <li>~100 en lista de espera</li>
-              </ul>
-            </div>
-            <div class="glass-card roadmap-item fragment fade-up">
-              <div class="quarter">Q2 2026</div>
-              <h3>Listo para integrar</h3>
-              <ul>
-                <li>API / SDK para bancos</li>
-                <li>Métrica de CAC demostrable</li>
-                <li class="placeholder">[EDITAR: meta de adopción / usuarios]</li>
-              </ul>
-            </div>
-            <div class="glass-card roadmap-item fragment fade-up">
-              <div class="quarter">Q3 2026</div>
-              <h3>Primer banco piloto</h3>
-              <ul>
-                <li>Carta de intención (LOI)</li>
-                <li>Integración en banca en línea</li>
-                <li class="placeholder">[EDITAR: meta de piloto]</li>
-              </ul>
-            </div>
-            <div class="glass-card roadmap-item fragment fade-up">
-              <div class="quarter">Q4 2026</div>
-              <h3>Escala</h3>
-              <ul>
-                <li>2.º banco / Sofipo</li>
-                <li class="placeholder">[EDITAR: mercado #2]</li>
-                <li class="placeholder">[EDITAR: partnerships]</li>
-              </ul>
+              <p>Builder desde los 5 años. Lidera operaciones y arquitectura en Penka, escalándola a +500,000 usuarios.</p>
             </div>
           </div>
         </section>
@@ -493,12 +450,13 @@
               <h3>Todo Q-Pay en un scan</h3>
               <p class="thanks-qr-desc">Escanea para acceder a la web, waitlist y app.</p>
               <div class="qr-box">
-                <img id="qpay-qr" alt="QR con enlaces a Q-Pay" width="168" height="168" />
+                <img id="qpay-qr" src="/assets/ldeleonb06qpay.png" alt="QR con enlaces a Q-Pay" width="168" height="168" />
               </div>
               <ul class="qr-links">
                 <li><a href="https://q-pay.ldeleon.com/">q-pay.ldeleon.com</a></li>
                 <li><a href="https://q-pay.ldeleon.com/waitlist">Waitlist</a></li>
                 <li><a href="https://q-pay.ldeleon.com/app-release.apk">Descargar app</a></li>
+                <li><a href="https://q-pay.ldeleon.com/">Contactanos</a></li>
               </ul>
               <p class="qr-url" id="qpay-qr-url"></p>
             </div>
@@ -534,13 +492,7 @@
 
       (function () {
         var base = QPAY_ORIGIN + '/';
-        var qr = document.getElementById('qpay-qr');
         var label = document.getElementById('qpay-qr-url');
-        if (qr) {
-          qr.src =
-            'https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=10&color=0b0f0d&bgcolor=f5f0e3&data=' +
-            encodeURIComponent(base);
-        }
         if (label) label.textContent = base;
       })();
     </script>

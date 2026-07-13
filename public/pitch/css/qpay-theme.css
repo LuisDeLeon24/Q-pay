@@ -536,6 +536,14 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
+  overflow: hidden;
+}
+
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .team-card h3 {
@@ -740,8 +748,9 @@
 .qr-box {
   display: inline-flex;
   padding: 14px;
-  background: #f5f0e3;
+  background: #ffffff;
   border: 1px solid var(--border-glass-strong);
+  border-radius: 8px;
   margin-bottom: 18px;
 }
 
@@ -749,6 +758,7 @@
   display: block;
   width: 168px;
   height: 168px;
+  object-fit: contain;
 }
 
 .qr-links {
