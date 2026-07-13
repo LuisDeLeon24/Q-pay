@@ -1,5 +1,29 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "headers": [
+    {
+      "source": "/assets/preview.jpg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        },
+        {
+          "key": "Content-Type",
+          "value": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "source": "/assets/preview.png",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/pitch",
@@ -10,11 +34,7 @@
       "destination": "/pitch/index.html"
     },
     {
-      "source": "/pitch/:path+",
-      "destination": "/pitch/index.html"
-    },
-    {
-      "source": "/(.*)",
+      "source": "/((?!assets/|pitch/|.*\\..*).*)",
       "destination": "/index.html"
     }
   ]
