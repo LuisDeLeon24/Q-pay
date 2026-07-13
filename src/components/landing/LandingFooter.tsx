@@ -35,7 +35,7 @@ export default function LandingFooter() {
 
           <div className="landing-footer-col">
             <h4>Legal</h4>
-            <a href="mailto:hola@qpay.app">Contacto</a>
+            <a href="https://q-pay.ldeleon.com/">q-pay.ldeleon.com</a>
           </div>
         </div>
       </div>
