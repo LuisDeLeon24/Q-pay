@@ -1,4 +1,5 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
       "source": "/pitch",
@@ -10,21 +11,11 @@
     },
     {
       "source": "/pitch/:path+",
-      "destination": "/pitch/index.html",
-      "missing": [
-        {
-          "type": "filesystem"
-        }
-      ]
+      "destination": "/pitch/index.html"
     },
     {
       "source": "/(.*)",
-      "destination": "/index.html",
-      "missing": [
-        {
-          "type": "filesystem"
-        }
-      ]
+      "destination": "/index.html"
     }
   ]
 }
