@@ -1,3 +1,4 @@
+// El formulario público se retiró. Estos registros ya enviados siguen en la tabla.
 import { supabase, isSupabaseConfigured } from './supabase'
 
 export type WaitlistPayload = {

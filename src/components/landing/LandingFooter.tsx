@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import QLogo from '../QLogo'
+import { DEMO_MAILTO, PROTOTYPE_PATH } from '../../lib/contact'
 import './LandingFooter.css'
 
 export default function LandingFooter() {
@@ -12,30 +13,34 @@ export default function LandingFooter() {
             <span>Q-Pay</span>
           </Link>
           <p className="landing-footer-tagline">
-            Finanzas informales, estandarizadas.
+            Préstamos entre conocidos, integrados en tu banca en línea.
           </p>
         </div>
 
         <div className="landing-footer-columns">
           <div className="landing-footer-col">
             <h4>Producto</h4>
-            <a href="#valor">Propuesta de valor</a>
-            <a href="#features">Características</a>
+            <a href="#problema">El problema</a>
             <a href="#como-funciona">Cómo funciona</a>
+            <a href="#bancos">Para bancos</a>
+            <a href="#personas">Para personas</a>
             <a href="#seguridad">Seguridad</a>
-            <Link to="/waitlist">Waitlist</Link>
+            <a href="#equipo">Equipo</a>
           </div>
 
           <div className="landing-footer-col">
-            <h4>Descargar</h4>
-            <a href="/app-release.apk" download="Q-Pay.apk">
-              App Android (APK)
+            <h4>Instituciones</h4>
+            <a href={DEMO_MAILTO}>Agenda una demo</a>
+            <a href={PROTOTYPE_PATH} download="Q-Pay.apk">
+              Prototipo para Android (demo)
             </a>
+            <a href="#contacto">Contacto</a>
           </div>
 
           <div className="landing-footer-col">
             <h4>Legal</h4>
-            <a href="https://q-pay.ldeleon.com/">q-pay.ldeleon.com</a>
+            <Link to="/terminos">Términos</Link>
+            <Link to="/privacidad">Política de privacidad</Link>
           </div>
         </div>
       </div>

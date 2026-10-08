@@ -1,7 +1,5 @@
 .hero-section {
   position: relative;
-  height: 100vh;
-  height: 100dvh;
   min-height: 100vh;
   min-height: 100dvh;
   box-sizing: border-box;
@@ -76,7 +74,7 @@
   font-weight: 400;
   color: rgba(255, 255, 255, 0.88);
   line-height: 1.6;
-  max-width: 520px;
+  max-width: 640px;
   margin: 0 auto;
 }
 
@@ -88,7 +86,7 @@
   gap: clamp(16px, 3vw, 28px);
   margin-top: 12px;
   width: 100%;
-  max-width: 480px;
+  max-width: 720px;
 }
 
 .hero-cta {
@@ -104,6 +102,8 @@
   color: #f5f0e3;
   background: var(--bottle-top);
   border: none;
+  text-align: center;
+  line-height: 1.3;
   transition: background 0.2s ease;
 }
 
@@ -130,6 +130,15 @@
 .hero-download:hover {
   color: #fff;
   text-decoration-color: rgba(255, 255, 255, 0.7);
+}
+
+.hero-stage {
+  max-width: 560px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.62);
 }
 
 @media (max-width: 768px) {

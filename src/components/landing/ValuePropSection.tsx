@@ -1,54 +1,59 @@
-import { Link } from 'react-router-dom'
+import { DEMO_MAILTO } from '../../lib/contact'
 import './ValuePropSection.css'
 
 const SIDES = [
   {
-    variant: 'borrower',
-    tag: 'Para solicitantes',
-    title: 'Consigue el préstamo que necesitas',
+    id: 'bancos',
+    variant: 'banks',
+    tag: 'Para bancos y cooperativas',
+    title: 'Un módulo en tu banca en línea',
     description:
-      'Accede a capital de forma rápida y sin trámites eternos, con condiciones justas para tu perfil.',
+      'Q-Pay no presta, no capta y no mueve dinero. Tú verificas al cliente (KYC/AML) y ejecutas las transferencias. Q-Pay registra el acuerdo, envía recordatorios y concilia cuotas. Pagas una licencia fija, más una tarifa por uso.',
     points: [
-      'Acceso rápido a financiamiento cuando lo necesitas',
-      'Tasas justas basadas en un score transparente',
-      'Herramientas de control de deudas y recordatorios',
+      'Llegas a personas fuera del sistema',
+      'Más transferencias dentro de tu banco',
+      'Historial de pagos de clientes sin historial crediticio',
+      'Integración modular, sin riesgo de crédito para el banco ni para Q-Pay',
     ],
     image: '/assets/landing/step-generate.png',
-    stat: { value: '24-48h', label: 'Acceso a financiamiento' },
+    stat: { value: 'B2B2C', label: 'Licencia fija + tarifa por uso' },
   },
   {
-    variant: 'investor',
-    tag: 'Para inversores',
-    title: 'Haz crecer tu dinero con propósito',
+    id: 'personas',
+    variant: 'people',
+    tag: 'Para personas',
+    title: 'El préstamo queda claro para los dos',
     description:
-      'Invierte directamente en personas de tu comunidad y obtén rendimientos con un riesgo gestionado.',
+      'Formalizas un préstamo de palabra sin salir de la app de tu banco. Quien presta y quien recibe ven el mismo acuerdo.',
     points: [
-      'Rendimientos atractivos apoyando a personas reales',
-      'Impacto directo en tu comunidad, no en un banco',
-      'Ecosistema con riesgo evaluado y diversificable',
+      'Sin descargar otra app',
+      'Sin cobrar incómodo',
+      'Todo queda claro para ambos',
+      'Gratis para ti',
     ],
     image: '/assets/landing/step-dashboard.png',
-    stat: { value: '100%', label: 'Directo a tu comunidad' },
+    stat: { value: 'Gratis', label: 'Para quien presta y quien recibe' },
   },
-]
+] as const
 
 export default function ValuePropSection() {
   return (
-    <section id="valor" className="value-section">
+    <section className="value-section">
       <div className="value-header animate-fade-up">
         <h2>
-          <span className="value-header-muted">Un ecosistema,</span> dos formas
-          de ganar
+          Una licencia para el banco.{' '}
+          <span className="value-header-muted">Gratis para ti.</span>
         </h2>
-        <Link to="/waitlist" className="value-header-cta">
-          Únete a la waitlist
-        </Link>
+        <a href={DEMO_MAILTO} className="value-header-cta">
+          Agenda una demo
+        </a>
       </div>
 
       <div className="value-showcases">
         {SIDES.map((side, i) => (
-          <div
-            key={side.variant}
+          <article
+            key={side.id}
+            id={side.id}
             className={`value-showcase value-showcase--${side.variant} animate-fade-up animate-fade-up-delay-${i + 1}`}
           >
             <div className="value-media">
@@ -69,7 +74,7 @@ export default function ValuePropSection() {
                 ))}
               </ul>
             </div>
-          </div>
+          </article>
         ))}
       </div>
     </section>

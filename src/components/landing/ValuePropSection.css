@@ -78,7 +78,7 @@
     min-height: clamp(560px, 82vh, 860px);
   }
 
-  .value-showcase--investor .value-media {
+  .value-showcase--people .value-media {
     order: 2;
   }
 }
@@ -94,7 +94,7 @@
   background: linear-gradient(160deg, #eef1ec 0%, #c9d0c7 100%);
 }
 
-.value-showcase--investor .value-media {
+.value-showcase--people .value-media {
   background: linear-gradient(160deg, #f2efe6 0%, #d6cdb6 100%);
 }
 
@@ -163,12 +163,12 @@
   margin-bottom: 20px;
 }
 
-.value-showcase--borrower .value-tag {
+.value-showcase--banks .value-tag {
   color: var(--accent-green);
   border-color: rgba(62, 207, 122, 0.3);
 }
 
-.value-showcase--investor .value-tag {
+.value-showcase--people .value-tag {
   color: var(--accent-yellow);
   border-color: rgba(232, 197, 71, 0.3);
 }
@@ -215,10 +215,10 @@
   height: 6px;
 }
 
-.value-showcase--borrower .value-panel-list li::before {
+.value-showcase--banks .value-panel-list li::before {
   background: var(--accent-green);
 }
 
-.value-showcase--investor .value-panel-list li::before {
+.value-showcase--people .value-panel-list li::before {
   background: var(--accent-yellow);
 }

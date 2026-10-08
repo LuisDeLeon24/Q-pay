@@ -3,29 +3,27 @@ import './SecuritySection.css'
 const PILLARS = [
   {
     quote:
-      'Tu información personal y financiera se cifra de extremo a extremo y se almacena bajo estándares de la industria.',
-    title: 'Protección de datos',
-    tag: 'Cifrado y privacidad',
+      'Q-Pay no presta, no capta y no mueve dinero. El banco ejecuta todas las transferencias.',
+    title: 'Sin custodia de fondos',
+    tag: 'El banco mueve el dinero',
+  },
+  {
+    quote: 'El banco verifica a su cliente. KYC y AML corresponden al banco.',
+    title: 'Verificación del cliente',
+    tag: 'KYC y AML del banco',
+  },
+  {
+    quote: 'El préstamo queda como un acuerdo digital aceptado por ambas partes.',
+    title: 'Acuerdo digital',
+    tag: 'Aceptado por ambas partes',
   },
   {
     quote:
-      'Cada préstamo e inversión queda respaldado por un contrato digital claro que ambas partes aceptan y firman.',
-    title: 'Contratos digitales',
-    tag: 'Acuerdos vinculantes',
+      'Diseñado para cumplir con la normativa guatemalteca: el dinero lo mueve tu banco. También está diseñado para normas de riesgo tecnológico y protección de datos.',
+    title: 'Cumplimiento',
+    tag: 'Diseñado para cumplir',
   },
-  {
-    quote:
-      'Operamos dentro del marco normativo vigente para proteger por igual a solicitantes e inversores.',
-    title: 'Cumplimiento legal',
-    tag: 'Marco regulatorio',
-  },
-  {
-    quote:
-      'Infraestructura confiable y monitoreada que garantiza la trazabilidad de cada transacción.',
-    title: 'Respaldo técnico',
-    tag: 'Trazabilidad total',
-  },
-]
+] as const
 
 export default function SecuritySection() {
   return (
@@ -33,9 +31,9 @@ export default function SecuritySection() {
       <div className="security-head animate-fade-up">
         <span className="security-eyebrow">Confianza primero</span>
         <h2>
-          Seguridad y transparencia
+          Seguridad y cumplimiento
           <br />
-          en cada operación
+          en cada acuerdo
         </h2>
       </div>
 

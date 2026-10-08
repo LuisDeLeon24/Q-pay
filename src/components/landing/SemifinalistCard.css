@@ -1,0 +1,80 @@
+.semifinalist {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 20px;
+  border: 1px solid rgba(62, 207, 122, 0.35);
+  background:
+    linear-gradient(90deg, rgba(62, 207, 122, 0.08), transparent 42%),
+    #0b0f0d;
+  overflow: hidden;
+}
+
+@media (min-width: 720px) {
+  .semifinalist {
+    grid-template-columns: 168px 1fr;
+    min-height: 168px;
+  }
+}
+
+.semifinalist-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px;
+  background: rgba(62, 207, 122, 0.08);
+  border-bottom: 1px solid rgba(62, 207, 122, 0.22);
+}
+
+@media (min-width: 720px) {
+  .semifinalist-badge {
+    border-bottom: none;
+    border-right: 1px solid rgba(62, 207, 122, 0.22);
+  }
+}
+
+.semifinalist-year {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(40px, 5vw, 52px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--accent-green);
+}
+
+.semifinalist-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 28px 28px 32px;
+}
+
+@media (min-width: 720px) {
+  .semifinalist-copy {
+    padding: 32px 40px;
+  }
+}
+
+.semifinalist-kicker {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-green);
+}
+
+.semifinalist-copy h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.semifinalist-copy p:last-child {
+  max-width: 640px;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}

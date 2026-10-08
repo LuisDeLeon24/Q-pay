@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { DEMO_MAILTO, PROTOTYPE_PATH } from '../../lib/contact'
 import './LandingNav.css'
 
 export default function LandingNav() {
@@ -9,16 +10,12 @@ export default function LandingNav() {
       </Link>
 
       <div className="landing-nav-actions">
-        <a
-          href="/app-release.apk"
-          download="Q-Pay.apk"
-          className="landing-nav-download"
-        >
-          Descargar app
+        <a href={PROTOTYPE_PATH} className="landing-nav-download" download="Q-Pay.apk">
+          Ver el prototipo
         </a>
-        <Link to="/waitlist" className="landing-nav-cta">
-          Waitlist
-        </Link>
+        <a href={DEMO_MAILTO} className="landing-nav-cta">
+          Agenda una demo
+        </a>
       </div>
     </nav>
   )

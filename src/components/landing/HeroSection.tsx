@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
 import QLogo from '../QLogo'
+import { DEMO_MAILTO, PROTOTYPE_PATH } from '../../lib/contact'
 import './HeroSection.css'
 
 export default function HeroSection() {
@@ -27,22 +27,23 @@ export default function HeroSection() {
         </h1>
 
         <p className="hero-tagline animate-fade-up animate-fade-up-delay-2">
-          Registra préstamos, comparte ofertas con QR y da seguimiento a cada
-          cuota — entre familia y amigos.
+          Formaliza los préstamos de palabra sin salir de tu banca en línea.
+          Gratis para ti; tu banco lo integra.
         </p>
 
         <div className="hero-actions animate-fade-up animate-fade-up-delay-3">
-          <Link to="/waitlist" className="hero-cta">
-            Waitlist
-          </Link>
-          <a
-            href="/app-release.apk"
-            download="Q-Pay.apk"
-            className="hero-download"
-          >
-            Descargar app
+          <a href={DEMO_MAILTO} className="hero-cta">
+            Agenda una demo
+          </a>
+          <a href={PROTOTYPE_PATH} className="hero-download" download="Q-Pay.apk">
+            Ver el prototipo
           </a>
         </div>
+
+        <p className="hero-stage animate-fade-up animate-fade-up-delay-4">
+          Prototipo para Android (demo), en validación. Sin ingresos todavía.
+          Siguiente paso: un piloto con un banco o cooperativa en Guatemala.
+        </p>
       </div>
     </section>
   )

@@ -1,9 +1,4 @@
 .how-section {
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   padding: 88px 24px;
   max-width: var(--content-max);
   margin: 0 auto;
@@ -33,41 +28,20 @@
   color: var(--text-secondary);
 }
 
-.how-toggle {
-  display: inline-flex;
-  gap: 4px;
-  padding: 5px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border-glass);
-  background: var(--bg-card);
-  margin-bottom: 56px;
-}
-
-.how-toggle-btn {
-  padding: 10px 26px;
-  border-radius: var(--radius-pill);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  background: transparent;
-  transition: color 0.2s ease, background 0.2s ease;
-}
-
-.how-toggle-btn.active {
-  color: #f5f0e3;
-  background: var(--bottle-top);
-}
-
 .how-steps {
   display: grid;
   grid-template-columns: 1fr;
   gap: 40px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 @media (min-width: 768px) {
   .how-steps {
     grid-template-columns: repeat(3, 1fr);
-    gap: 0;
+    row-gap: 48px;
+    column-gap: 0;
   }
 }
 
@@ -77,29 +51,34 @@
 
 @media (min-width: 768px) {
   .how-step {
-    padding: 0 48px;
+    padding: 0 32px;
   }
 
-  .how-step:first-child {
+  .how-step:nth-child(3n + 1) {
     padding-left: 0;
   }
 
-  .how-step + .how-step {
+  .how-step:not(:nth-child(3n + 1)) {
     border-left: 1px solid var(--border-glass);
   }
 }
 
-.how-step-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.how-step-num {
+  display: block;
+  margin-bottom: 16px;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 28px;
+  font-weight: 500;
   color: var(--accent-green);
-  margin-bottom: 28px;
+  letter-spacing: -0.02em;
 }
 
-.how-step-icon svg {
-  width: 34px;
-  height: 34px;
+.how-note {
+  margin-top: 40px;
+  max-width: 640px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
 }
 
 .how-step-text {

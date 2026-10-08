@@ -1,0 +1,1124 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Q-Pay — Capítulo 47</title>
+    <script src="vendor/gsap.min.js"></script>
+    <script src="vendor/audio-data.js"></script>
+    <style>
+      @font-face {
+        font-family: "Fraunces";
+        font-style: normal;
+        font-weight: 500;
+        src: url("assets/fonts/Fraunces-normal-500.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Fraunces";
+        font-style: italic;
+        font-weight: 400;
+        src: url("assets/fonts/Fraunces-italic-400.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Outfit";
+        font-style: normal;
+        font-weight: 300 600;
+        src: url("assets/fonts/Outfit-normal-400.woff2") format("woff2");
+      }
+
+      :root {
+        --bg: #000000;
+        --bg-bottle: #0a1a15;
+        --bottle-top: #1a4a38;
+        --bottle-bottom: #0c2e22;
+        --accent: #3ecf7a;
+        --accent-muted: #6b9a7e;
+        --text: #ffffff;
+        --text-2: rgba(255, 255, 255, 0.62);
+        --glass: rgba(255, 255, 255, 0.05);
+        --glass-border: rgba(255, 255, 255, 0.16);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Outfit", system-ui, sans-serif;
+      }
+
+      .clip {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* ---------- persistent layers ---------- */
+      .bg-field {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 90% 70% at 70% 60%, #0a1a15 0%, #030504 55%, #000000 100%);
+      }
+      .glow {
+        position: absolute;
+        left: 1010px;
+        top: 150px;
+        width: 780px;
+        height: 780px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(26, 74, 56, 0.85) 0%, rgba(12, 46, 34, 0.45) 45%, rgba(0, 0, 0, 0) 70%);
+        opacity: 0.6;
+      }
+      .ghost {
+        position: absolute;
+        left: -40px;
+        bottom: -120px;
+        font-family: "Fraunces", serif;
+        font-weight: 500;
+        font-size: 520px;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        color: rgba(62, 207, 122, 0.06);
+        white-space: nowrap;
+      }
+      .ghost::before {
+        content: "Q-Pay";
+      }
+      .meta {
+        position: absolute;
+        left: 120px;
+        top: 70px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        font-size: 22px;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--text-2);
+        opacity: 0;
+      }
+      .meta-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .progress {
+        position: absolute;
+        left: 120px;
+        right: 120px;
+        bottom: 60px;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .progress-fill {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: var(--accent);
+        transform-origin: left center;
+      }
+
+      /* ---------- scene 1: chat hook ---------- */
+      #s1 {
+        display: flex;
+        align-items: center;
+        padding: 0 120px;
+        gap: 90px;
+      }
+      .s1-copy {
+        width: 820px;
+      }
+      .chapter {
+        font-family: "Fraunces", serif;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 64px;
+        color: var(--accent-muted);
+        opacity: 0;
+      }
+      .s1-title {
+        margin-top: 18px;
+        font-family: "Fraunces", serif;
+        font-weight: 500;
+        font-size: 112px;
+        line-height: 1.02;
+        letter-spacing: -0.03em;
+        opacity: 0;
+      }
+      .headline-line-static {
+        display: block;
+      }
+      .chat {
+        width: 760px;
+        padding: 40px 44px 48px;
+        border-radius: 36px;
+        background: var(--glass);
+        border: 2px solid var(--glass-border);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+        opacity: 0;
+      }
+      .chat-head {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding-bottom: 28px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      }
+      .avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: #d9dcdf;
+        overflow: hidden;
+        flex: none;
+      }
+      .avatar svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .chat-name {
+        font-size: 34px;
+        font-weight: 600;
+      }
+      .chat-status {
+        font-size: 24px;
+        color: var(--text-2);
+      }
+      .chat-body {
+        position: relative;
+        height: 330px;
+        padding-top: 36px;
+      }
+      .bubble-out {
+        margin-left: auto;
+        width: fit-content;
+        max-width: 560px;
+        padding: 24px 32px;
+        border-radius: 30px 30px 8px 30px;
+        background: linear-gradient(180deg, var(--bottle-top), var(--bottle-bottom));
+        border: 2px solid rgba(62, 207, 122, 0.35);
+        font-size: 42px;
+        font-weight: 500;
+        opacity: 0;
+      }
+      .seen {
+        margin-top: 14px;
+        text-align: right;
+        font-size: 24px;
+        color: var(--text-2);
+        opacity: 0;
+      }
+      .typing {
+        position: absolute;
+        left: 0;
+        bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        opacity: 0;
+      }
+      .typing-bubble {
+        display: flex;
+        gap: 12px;
+        padding: 24px 30px;
+        border-radius: 30px 30px 30px 8px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .typing-dot {
+        display: block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.75);
+      }
+      .typing-label {
+        font-size: 24px;
+        color: var(--text-2);
+      }
+
+      /* ---------- scene 2 + 6: brand lockups ---------- */
+      .lockup {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        opacity: 0;
+      }
+      .brand-mark {
+        display: block;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+        border: 2px solid rgba(255, 255, 255, 0.18);
+        padding: 20px;
+      }
+      .brand-mark img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .brand-name {
+        font-size: 84px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      .headline {
+        margin-top: 44px;
+        font-family: "Fraunces", serif;
+        font-weight: 500;
+        font-size: 118px;
+        line-height: 1.04;
+        letter-spacing: -0.035em;
+      }
+      .headline-line {
+        display: block;
+        opacity: 0;
+      }
+      .headline-line em {
+        font-style: italic;
+        font-weight: 400;
+        color: var(--accent);
+      }
+
+      /* ---------- flow scene ---------- */
+      .captions {
+        position: absolute;
+        left: 120px;
+        top: 0;
+        bottom: 0;
+        width: 860px;
+      }
+      .cap {
+        position: absolute;
+        left: 0;
+        top: 340px;
+        width: 860px;
+        opacity: 0;
+      }
+      .cap-step {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 26px;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .cap-step::before {
+        content: "";
+        display: block;
+        width: 56px;
+        height: 3px;
+        background: var(--accent);
+      }
+      .cap-title {
+        margin-top: 26px;
+        font-family: "Fraunces", serif;
+        font-weight: 500;
+        font-size: 96px;
+        line-height: 1.02;
+        letter-spacing: -0.03em;
+      }
+      .cap-sub {
+        margin-top: 28px;
+        max-width: 700px;
+        font-size: 38px;
+        font-weight: 300;
+        line-height: 1.3;
+        color: var(--text-2);
+      }
+      .punch {
+        position: absolute;
+        left: 0;
+        top: 330px;
+        width: 860px;
+        font-family: "Fraunces", serif;
+        font-size: 112px;
+        font-weight: 500;
+        line-height: 1.02;
+        letter-spacing: -0.03em;
+        opacity: 0;
+      }
+      .punch-line {
+        display: block;
+      }
+      .punch-line em {
+        font-style: italic;
+        font-weight: 400;
+        color: var(--accent);
+      }
+
+      .phone-wrap {
+        position: absolute;
+        left: 1170px;
+        top: 70px;
+        width: 480px;
+        height: 940px;
+        opacity: 0;
+      }
+      .phone {
+        position: relative;
+        width: 480px;
+        height: 940px;
+        border-radius: 64px;
+        border: 3px solid rgba(255, 255, 255, 0.2);
+        background: linear-gradient(180deg, #030303 0%, #0a1a15 60%, #133528 100%);
+        box-shadow: 0 50px 120px rgba(0, 0, 0, 0.7), inset 0 0 0 10px #050505;
+        overflow: hidden;
+      }
+      .notch {
+        position: absolute;
+        left: 180px;
+        top: 22px;
+        width: 120px;
+        height: 34px;
+        border-radius: 20px;
+        background: #000;
+      }
+      .screen {
+        position: absolute;
+        inset: 0;
+        padding: 80px 40px 40px;
+        opacity: 0;
+      }
+      .screen-logo {
+        display: block;
+        width: 44px;
+        height: 44px;
+        margin: 0 auto;
+        opacity: 0.4;
+        object-fit: contain;
+      }
+      .screen-title {
+        margin-top: 26px;
+        font-size: 56px;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+      }
+
+      /* generar */
+      .field {
+        margin-top: 42px;
+      }
+      .field-label {
+        font-size: 32px;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+      }
+      .field-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        height: 70px;
+        margin-top: 8px;
+        font-size: 48px;
+        font-weight: 500;
+      }
+      .field-prefix {
+        color: var(--accent-muted);
+        font-weight: 600;
+      }
+      .digit {
+        display: inline-block;
+        opacity: 0;
+      }
+      .field-line {
+        height: 2px;
+        background: rgba(255, 255, 255, 0.85);
+      }
+      .plazo {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+      }
+      .plazo-val {
+        position: absolute;
+        left: 0;
+        top: 0;
+        line-height: 60px;
+      }
+      .plazo-new {
+        opacity: 0;
+      }
+      .chev {
+        width: 26px;
+        height: 26px;
+      }
+      .field-unit {
+        font-weight: 300;
+        color: var(--text-2);
+      }
+      .field-row-split {
+        justify-content: space-between;
+      }
+      .arrow-btn {
+        position: absolute;
+        left: 170px;
+        bottom: 80px;
+        width: 140px;
+        height: 96px;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .arrow-btn svg {
+        width: 72px;
+        height: 36px;
+      }
+      .tap {
+        position: absolute;
+        left: 205px;
+        bottom: 93px;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        border: 3px solid rgba(255, 255, 255, 0.9);
+        opacity: 0;
+      }
+
+      /* detalle */
+      .back {
+        position: absolute;
+        left: 34px;
+        top: 70px;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.14);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .back svg {
+        width: 28px;
+        height: 28px;
+      }
+      .detail-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 34px;
+        margin-top: 30px;
+      }
+      .d-label {
+        font-size: 30px;
+        font-weight: 300;
+        letter-spacing: -0.03em;
+      }
+      .d-value {
+        margin-top: 4px;
+        font-size: 36px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+      .d-value.big {
+        font-size: 58px;
+        line-height: 1;
+        color: var(--accent-muted);
+      }
+      .qr-box {
+        position: relative;
+        width: 290px;
+        height: 290px;
+        margin: 46px auto 0;
+        padding: 18px;
+        border-radius: 22px;
+        background: #ffffff;
+      }
+      .qr-box img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .scan-line {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        top: 12px;
+        height: 4px;
+        border-radius: 2px;
+        background: var(--accent);
+        box-shadow: 0 0 18px rgba(62, 207, 122, 0.9);
+        opacity: 0;
+      }
+      .corners {
+        position: absolute;
+        inset: -12px;
+        opacity: 0;
+      }
+      .corner {
+        position: absolute;
+        width: 56px;
+        height: 56px;
+        border-color: var(--accent);
+        border-style: solid;
+        border-width: 0;
+      }
+      .corner.tl { left: -14px; top: -14px; border-top-width: 5px; border-left-width: 5px; border-top-left-radius: 18px; }
+      .corner.tr { right: -14px; top: -14px; border-top-width: 5px; border-right-width: 5px; border-top-right-radius: 18px; }
+      .corner.bl { left: -14px; bottom: -14px; border-bottom-width: 5px; border-left-width: 5px; border-bottom-left-radius: 18px; }
+      .corner.br { right: -14px; bottom: -14px; border-bottom-width: 5px; border-right-width: 5px; border-bottom-right-radius: 18px; }
+
+      .accept {
+        position: absolute;
+        left: 1080px;
+        top: 540px;
+        width: 660px;
+        padding: 40px 44px;
+        border-radius: 36px;
+        background: rgba(8, 20, 16, 0.94);
+        border: 2px solid rgba(62, 207, 122, 0.45);
+        box-shadow: 0 40px 100px rgba(0, 0, 0, 0.75);
+        display: flex;
+        gap: 30px;
+        align-items: center;
+        opacity: 0;
+      }
+      .accept .avatar {
+        width: 110px;
+        height: 110px;
+      }
+      .accept-text {
+        font-size: 30px;
+        color: var(--text-2);
+      }
+      .accept-amount {
+        font-size: 76px;
+        font-weight: 600;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+      .accept-detail {
+        font-size: 30px;
+        font-weight: 500;
+      }
+      .accept-detail strong {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      /* dashboard */
+      .dash-card {
+        margin-top: 30px;
+        padding: 26px 24px;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.14);
+      }
+      .dash-greet {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .dash-hello {
+        font-size: 22px;
+      }
+      .dash-welcome {
+        font-size: 24px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .dash-greet .avatar {
+        width: 64px;
+        height: 64px;
+      }
+      .dash-divider {
+        height: 2px;
+        margin: 22px 0;
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .dash-section {
+        font-size: 36px;
+        font-weight: 300;
+      }
+      .dash-icons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 18px;
+      }
+      .dash-icon {
+        width: 96px;
+        height: 84px;
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .dash-icon.active {
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+        color: #fff;
+      }
+      .dash-icon svg {
+        width: 44px;
+        height: 44px;
+      }
+      .tabs {
+        display: inline-flex;
+        margin-top: 26px;
+        padding: 6px;
+        border-radius: 22px;
+        border: 2px solid rgba(255, 255, 255, 0.14);
+        font-size: 26px;
+      }
+      .tab {
+        padding: 12px 20px;
+        border-radius: 16px;
+        color: var(--text-2);
+      }
+      .tab.active {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.06);
+        border: 2px solid rgba(255, 255, 255, 0.16);
+      }
+      .loan {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        margin-top: 26px;
+        padding: 22px 22px;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.14);
+      }
+      .loan {
+        gap: 16px;
+        padding: 20px 18px;
+      }
+      .loan .avatar {
+        width: 58px;
+        height: 58px;
+      }
+      .loan-info {
+        flex: 1;
+      }
+      .loan-name {
+        font-size: 25px;
+        white-space: nowrap;
+      }
+      .loan-name strong {
+        font-weight: 600;
+      }
+      .loan-paid {
+        margin-top: 4px;
+        font-size: 28px;
+        font-weight: 600;
+        color: var(--text-2);
+      }
+      .ring {
+        position: relative;
+        width: 96px;
+        height: 96px;
+        flex: none;
+      }
+      .ring svg {
+        display: block;
+        width: 96px;
+        height: 96px;
+      }
+      .ring-pct {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        font-weight: 600;
+      }
+
+      /* outro */
+      .outro-sub {
+        margin-top: 36px;
+        font-size: 40px;
+        font-weight: 300;
+        color: var(--text-2);
+        opacity: 0;
+      }
+      .url {
+        margin-top: 44px;
+        padding: 18px 40px;
+        border-radius: 999px;
+        border: 2px solid rgba(62, 207, 122, 0.55);
+        background: linear-gradient(180deg, var(--bottle-top), var(--bottle-bottom));
+        font-size: 34px;
+        font-weight: 500;
+        color: #f5f0e3;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="21.5"
+      data-width="1920"
+      data-height="1080"
+      data-fps="30"
+    >
+      <div class="bg-field"></div>
+      <div id="glow" class="glow"></div>
+      <div id="ghost" class="ghost" aria-hidden="true" data-layout-allow-overflow></div>
+      <div id="meta" class="meta"><span class="meta-dot"></span>Q-Pay · Cobrar sin incomodar</div>
+      <div class="progress"><span id="progress-fill" class="progress-fill"></span></div>
+
+      <!-- Scene 1: Capítulo 47 -->
+      <section id="s1" class="clip" data-start="0" data-duration="3.7" data-track-index="1">
+        <div id="s1-copy" class="s1-copy">
+          <p id="chapter" class="chapter">Capítulo 47</p>
+          <h1 id="s1-title" class="s1-title"><span class="headline-line-static">Mario todavía</span><span class="headline-line-static">no paga.</span></h1>
+        </div>
+        <div id="chat" class="chat">
+          <div class="chat-head">
+            <div class="avatar">
+              <svg viewBox="0 0 64 64"><rect width="64" height="64" fill="#d9dcdf" /><circle cx="32" cy="25" r="12" fill="#8c9197" /><path d="M10 64c2-14 11-21 22-21s20 7 22 21z" fill="#8c9197" /></svg>
+            </div>
+            <div>
+              <p class="chat-name">Mario</p>
+              <p class="chat-status">en línea hace un momento</p>
+            </div>
+          </div>
+          <div class="chat-body">
+            <p id="bubble" class="bubble-out">Oye Mario… ¿y los $100?</p>
+            <p id="seen" class="seen">Visto 11:47 p.m.</p>
+            <div id="typing" class="typing">
+              <div class="typing-bubble">
+                <span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>
+              </div>
+              <span class="typing-label">Mario está escribiendo…</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scene 2: Giro de guion -->
+      <section id="s2" class="clip lockup" data-start="3.7" data-duration="2.64" data-track-index="2">
+        <div id="s2-brand" class="brand">
+          <span class="brand-mark"><img src="assets/img/logo.png" alt="" /></span>
+          <span class="brand-name">Q-Pay</span>
+        </div>
+        <h2 class="headline">
+          <span id="s2-l1" class="headline-line">Presta con confianza,</span>
+          <span id="s2-l2" class="headline-line"><em>sin dolores de cabeza</em></span>
+        </h2>
+      </section>
+
+      <!-- Scenes 3–5: the flow on one phone -->
+      <section id="flow" class="clip" data-start="6.34" data-duration="12.1" data-track-index="3">
+        <div class="captions">
+          <div id="cap1" class="cap">
+            <p class="cap-step">Paso 01</p>
+            <h2 class="cap-title">Arma la oferta.</h2>
+            <p class="cap-sub">Monto, plazo e interés. Sin papeles, sin pena.</p>
+          </div>
+          <div id="cap2" class="cap">
+            <p class="cap-step">Paso 02</p>
+            <h2 class="cap-title">Comparte el QR.</h2>
+            <p class="cap-sub">Mario lo escanea y acepta al instante.</p>
+          </div>
+          <div id="cap3" class="cap">
+            <p class="cap-step">Paso 03</p>
+            <h2 class="cap-title">Cada cuota, sola.</h2>
+            <p class="cap-sub">Seguimiento automático. Nadie tiene que cobrar.</p>
+          </div>
+          <h2 id="punch" class="punch">
+            <span class="punch-line">Mario pagó.</span>
+            <span class="punch-line"><em>La amistad sigue.</em></span>
+          </h2>
+        </div>
+
+        <div id="phone-wrap" class="phone-wrap">
+          <div class="phone">
+            <!-- Generar -->
+            <div id="scr-gen" class="screen">
+              <img class="screen-logo" src="assets/img/logo.png" alt="" />
+              <h3 class="screen-title">Generar</h3>
+              <div class="field">
+                <p class="field-label">Quiero Prestar</p>
+                <div class="field-row">
+                  <span class="field-prefix">$</span>
+                  <span><span id="dg1" class="digit">1</span><span id="dg2" class="digit">0</span><span id="dg3" class="digit">0</span></span>
+                </div>
+                <div class="field-line"></div>
+              </div>
+              <div class="field">
+                <p class="field-label">A un plazo de</p>
+                <div class="field-row">
+                  <span class="plazo" data-layout-allow-overlap><span id="plazo-old" class="plazo-val">6</span><span id="plazo-new" class="plazo-val plazo-new">10</span></span>
+                  <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  <span class="field-unit">Meses</span>
+                </div>
+              </div>
+              <div class="field">
+                <p class="field-label">Con interes de</p>
+                <div class="field-row field-row-split">
+                  <span id="dg-int" class="digit">0</span>
+                  <span>%</span>
+                </div>
+                <div class="field-line"></div>
+              </div>
+              <div id="arrow-btn" class="arrow-btn">
+                <svg viewBox="0 0 72 36" fill="none"><path d="M4 18h62M50 4l16 14-16 14" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </div>
+              <div id="tap" class="tap"></div>
+            </div>
+
+            <!-- Detalle -->
+            <div id="scr-det" class="screen">
+              <div class="back">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 6l-6 6 6 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </div>
+              <img class="screen-logo" src="assets/img/logo.png" alt="" />
+              <h3 class="screen-title">Detalle</h3>
+              <div class="detail-grid">
+                <div><p class="d-label">Monto</p><p class="d-value big">$100</p></div>
+                <div><p class="d-label">Plazo</p><p class="d-value">10 cuotas</p></div>
+                <div><p class="d-label">Cuota</p><p class="d-value">$10</p></div>
+                <div><p class="d-label">Interes</p><p class="d-value">0%</p></div>
+              </div>
+              <div class="qr-box">
+                <img src="assets/img/qr.png" alt="" />
+                <div id="scan-line" class="scan-line"></div>
+                <div id="corners" class="corners">
+                  <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dashboard -->
+            <div id="scr-dash" class="screen">
+              <img class="screen-logo" src="assets/img/logo.png" alt="" />
+              <div class="dash-card">
+                <div class="dash-greet">
+                  <div>
+                    <p class="dash-hello">Hola, Luis</p>
+                    <p class="dash-welcome">Bienvenido de nuevo!</p>
+                  </div>
+                  <div class="avatar">
+                    <svg viewBox="0 0 64 64"><rect width="64" height="64" fill="#d9dcdf" /><circle cx="32" cy="25" r="12" fill="#8c9197" /><path d="M10 64c2-14 11-21 22-21s20 7 22 21z" fill="#8c9197" /></svg>
+                  </div>
+                </div>
+                <div class="dash-divider"></div>
+                <p class="dash-section">Prestamos</p>
+                <div class="dash-icons">
+                  <span class="dash-icon active">
+                    <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5" /><rect x="7" y="3" width="10" height="4" rx="1" stroke="currentColor" stroke-width="1.5" /><circle cx="12" cy="13" r="2" fill="currentColor" /></svg>
+                  </span>
+                  <span class="dash-icon">
+                    <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="14" rx="8" ry="6" stroke="currentColor" stroke-width="1.5" /><circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.5" /></svg>
+                  </span>
+                  <span class="dash-icon">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M4 10L6 4H18L20 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /><rect x="5" y="10" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1.5" /><rect x="10" y="14" width="4" height="6" stroke="currentColor" stroke-width="1.5" /></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="tabs"><span class="tab active">Prestado</span><span class="tab">Debido</span></div>
+              <div class="loan">
+                <div class="avatar">
+                  <svg viewBox="0 0 64 64"><rect width="64" height="64" fill="#d9dcdf" /><circle cx="32" cy="25" r="12" fill="#8c9197" /><path d="M10 64c2-14 11-21 22-21s20 7 22 21z" fill="#8c9197" /></svg>
+                </div>
+                <div class="loan-info">
+                  <p class="loan-name">Mario - <strong>10 cuotas</strong></p>
+                  <p id="loan-paid" class="loan-paid">$10/100</p>
+                </div>
+                <div class="ring">
+                  <svg viewBox="0 0 96 96">
+                    <circle cx="48" cy="48" r="38" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="10" />
+                    <circle id="ring-arc" cx="48" cy="48" r="38" fill="none" stroke="#2ecc71" stroke-width="10" stroke-linecap="round" stroke-dasharray="238.76" stroke-dashoffset="214.88" transform="rotate(-90 48 48)" />
+                  </svg>
+                  <span id="ring-pct" class="ring-pct">10%</span>
+                </div>
+              </div>
+            </div>
+            <div class="notch"></div>
+          </div>
+        </div>
+
+        <div id="accept" class="accept">
+          <div class="avatar">
+            <svg viewBox="0 0 64 64"><rect width="64" height="64" fill="#d9dcdf" /><circle cx="32" cy="25" r="12" fill="#8c9197" /><path d="M10 64c2-14 11-21 22-21s20 7 22 21z" fill="#8c9197" /></svg>
+          </div>
+          <div>
+            <p class="accept-text">Mario ha aceptado tu oferta de:</p>
+            <p class="accept-amount">$100</p>
+            <p class="accept-detail">10 cuotas · <strong>0% interes</strong></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scene 6: lockup -->
+      <section id="s6" class="clip lockup" data-start="18.44" data-duration="3.06" data-track-index="4">
+        <div id="s6-brand" class="brand">
+          <span class="brand-mark"><img src="assets/img/logo.png" alt="" /></span>
+          <span class="brand-name">Q-Pay</span>
+        </div>
+        <h2 class="headline">
+          <span id="s6-l1" class="headline-line">Presta con confianza,</span>
+          <span id="s6-l2" class="headline-line"><em>sin dolores de cabeza</em></span>
+        </h2>
+        <p id="s6-sub" class="outro-sub">Préstamos entre personas, dentro de tu banco.</p>
+        <p id="s6-url" class="url">q-pay.ldeleon.com</p>
+      </section>
+
+      <!-- Audio -->
+      <audio
+        id="music"
+        src="assets/music/happy-beats-business-moves-vol-9-by-ende-dot-app.mp3"
+        data-start="0"
+        data-duration="21.5"
+        data-track-index="10"
+        data-volume="1"
+        data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0.07},{"t":3.4,"v":0.07},{"t":3.8,"v":0.32},{"t":19.3,"v":0.32},{"t":21.5,"v":0}]}]}'
+      ></audio>
+      <audio id="sfx-send" src="assets/sfx/interface/drop_002.ogg" data-start="0.45" data-duration="0.19" data-track-index="11" data-volume="0.6"></audio>
+      <audio id="sfx-reveal" src="assets/sfx/impact/impactSoft_medium_001.ogg" data-start="3.66" data-duration="0.18" data-track-index="12" data-volume="0.8"></audio>
+      <audio id="sfx-key1" src="assets/sfx/keyboard/keypress-003.wav" data-start="7.4" data-duration="0.3" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sfx-key2" src="assets/sfx/keyboard/keypress-012.wav" data-start="7.66" data-duration="0.3" data-track-index="14" data-volume="0.55"></audio>
+      <audio id="sfx-key3" src="assets/sfx/keyboard/keypress-024.wav" data-start="7.92" data-duration="0.3" data-track-index="15" data-volume="0.55"></audio>
+      <audio id="sfx-select" src="assets/sfx/ui/click2.ogg" data-start="8.44" data-duration="0.06" data-track-index="16" data-volume="0.6"></audio>
+      <audio id="sfx-key4" src="assets/sfx/keyboard/keypress-018.wav" data-start="8.96" data-duration="0.3" data-track-index="17" data-volume="0.55"></audio>
+      <audio id="sfx-tap" src="assets/sfx/ui/click2.ogg" data-start="9.5" data-duration="0.06" data-track-index="18" data-volume="0.8"></audio>
+      <audio id="sfx-accept" src="assets/sfx/casino/card-slide-1.ogg" data-start="12.6" data-duration="0.6" data-track-index="19" data-volume="0.6"></audio>
+      <audio id="sfx-tick1" src="assets/sfx/casino/chips-stack-1.ogg" data-start="15.28" data-duration="0.29" data-track-index="20" data-volume="0.45"></audio>
+      <audio id="sfx-tick2" src="assets/sfx/casino/chips-stack-1.ogg" data-start="15.81" data-duration="0.29" data-track-index="21" data-volume="0.45"></audio>
+      <audio id="sfx-tick3" src="assets/sfx/casino/chips-stack-1.ogg" data-start="16.34" data-duration="0.29" data-track-index="22" data-volume="0.45"></audio>
+      <audio id="sfx-tick4" src="assets/sfx/casino/chips-stack-3.ogg" data-start="16.86" data-duration="0.37" data-track-index="23" data-volume="0.6"></audio>
+      <audio id="sfx-bell" src="assets/sfx/impact/impactBell_heavy_000.ogg" data-start="18.5" data-duration="1.48" data-track-index="24" data-volume="0.5"></audio>
+    </div>
+
+    <script>
+      const TOTAL = 21.5;
+      const tl = gsap.timeline({ paused: true });
+
+      // ---------- persistent layers ----------
+      tl.to("#meta", { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.1);
+      tl.fromTo("#progress-fill", { scaleX: 0 }, { scaleX: 1, duration: TOTAL - 0.05, ease: "none" }, 0);
+      tl.fromTo("#ghost", { x: 0 }, { x: -160, duration: TOTAL, ease: "none" }, 0);
+
+      // Audio-reactive: music RMS/bass makes the bottle glow breathe (sampled per frame).
+      const audio = window.QPAY_AUDIO;
+      const glowProxy = { f: 0 };
+      tl.to(glowProxy, {
+        f: Math.round(TOTAL * audio.fps) - 1,
+        duration: TOTAL,
+        ease: "none",
+        onUpdate() {
+          const i = Math.min(audio.rms.length - 1, Math.max(0, Math.round(glowProxy.f)));
+          gsap.set("#glow", { scale: 1 + audio.bass[i] * 0.12, opacity: 0.45 + audio.rms[i] * 0.4 });
+        },
+      }, 0);
+
+      // ---------- Scene 1: Capítulo 47 (0 – 3.7) ----------
+      tl.fromTo("#chapter", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 0.15);
+      tl.fromTo("#s1-title", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 0.3);
+      tl.fromTo("#chat", { y: 30, scale: 0.97, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.2);
+      tl.fromTo("#bubble", { scale: 0.8, opacity: 0, transformOrigin: "100% 100%" }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.8)" }, 0.5);
+      tl.to("#seen", { opacity: 1, duration: 0.3, ease: "power1.out" }, 1.4);
+      tl.fromTo("#typing", { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 2.1);
+      tl.to(".typing-dot", { y: -8, duration: 0.18, ease: "sine.inOut", yoyo: true, repeat: 3, stagger: 0.1 }, 2.2);
+      tl.to("#typing", { opacity: 0, duration: 0.25, ease: "power1.in" }, 3.05);
+      tl.to(["#s1-copy", "#chat"], { y: -24, opacity: 0, duration: 0.3, ease: "power2.in" }, 3.32);
+
+      // ---------- Scene 2: Q-Pay reveal (3.7 – 6.34) ----------
+      // beat-locked: 3.70s
+      tl.fromTo("#s2-brand", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.6)" }, 3.7);
+      tl.fromTo("#s2-l1", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 3.95);
+      tl.fromTo("#s2-l2", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 4.12);
+      tl.to(["#s2-brand", "#s2-l1", "#s2-l2"], { y: -30, opacity: 0, duration: 0.28, ease: "power2.in", stagger: 0.03 }, 5.98);
+
+      // ---------- Flow: phone (6.34 – 18.44) ----------
+      // beat-locked: 6.34s
+      tl.fromTo("#phone-wrap", { y: 120, rotation: 4, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 6.34);
+      tl.set("#scr-gen", { opacity: 1 }, 6.34);
+
+      // Step 01 — Generar
+      tl.fromTo("#cap1", { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 6.5);
+      tl.set("#dg1", { opacity: 1 }, 7.4);
+      tl.set("#dg2", { opacity: 1 }, 7.66);
+      tl.set("#dg3", { opacity: 1 }, 7.92);
+      tl.to("#plazo-old", { y: -30, opacity: 0, duration: 0.2, ease: "power2.in" }, 8.44);
+      tl.fromTo("#plazo-new", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.25, ease: "power2.out" }, 8.5);
+      tl.set("#dg-int", { opacity: 1 }, 8.96);
+      tl.to("#arrow-btn", { scale: 0.9, duration: 0.1, ease: "power2.in" }, 9.5);
+      tl.to("#arrow-btn", { scale: 1, duration: 0.25, ease: "back.out(2)" }, 9.6);
+      tl.fromTo("#tap", { scale: 0.4, opacity: 0.9 }, { scale: 2.2, opacity: 0, duration: 0.5, ease: "power2.out" }, 9.5);
+      tl.to("#cap1", { x: -30, opacity: 0, duration: 0.25, ease: "power2.in" }, 10.22);
+      tl.to("#scr-gen", { x: -60, opacity: 0, duration: 0.25, ease: "power2.in" }, 10.26);
+
+      // Step 02 — Detalle + QR, beat-locked: 10.54s
+      tl.fromTo("#scr-det", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 10.54);
+      tl.fromTo("#cap2", { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 10.62);
+      tl.fromTo("#corners", { scale: 1.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.6)" }, 11.2);
+      tl.set("#scan-line", { opacity: 1 }, 11.4);
+      tl.fromTo("#scan-line", { y: 0 }, { y: 256, duration: 0.95, ease: "sine.inOut" }, 11.4);
+      tl.to("#scan-line", { opacity: 0, duration: 0.15 }, 12.35);
+      // strong cue: 12.65s
+      tl.fromTo("#accept", { y: 80, scale: 0.9, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.5)" }, 12.62);
+      tl.to(["#accept", "#cap2"], { opacity: 0, duration: 0.28, ease: "power2.in" }, 14.4);
+      tl.to("#scr-det", { x: -60, opacity: 0, duration: 0.25, ease: "power2.in" }, 14.48);
+
+      // Step 03 — Dashboard
+      tl.fromTo("#scr-dash", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 14.76);
+      tl.fromTo("#cap3", { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 14.84);
+      const RING_C = 238.76;
+      const ringState = { pct: 10 };
+      // beat-grid: ring ticks at 15.28, 15.81, 16.34, 16.86
+      tl.to(ringState, {
+        pct: 100,
+        duration: 1.76,
+        ease: "power1.inOut",
+        onUpdate() {
+          const p = Math.round(ringState.pct);
+          document.getElementById("ring-arc").setAttribute("stroke-dashoffset", String(RING_C * (1 - ringState.pct / 100)));
+          document.getElementById("ring-pct").textContent = p + "%";
+          document.getElementById("loan-paid").textContent = "$" + p + "/100";
+        },
+      }, 15.1);
+      tl.to("#ring-arc", { attr: { stroke: "#3ecf7a" }, duration: 0.2 }, 16.8);
+      tl.to("#cap3", { x: -30, opacity: 0, duration: 0.25, ease: "power2.in" }, 16.62);
+      tl.fromTo("#punch", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, 16.9);
+      tl.to(["#punch", "#phone-wrap"], { opacity: 0, y: -20, duration: 0.32, ease: "power2.in" }, 18.06);
+
+      // ---------- Scene 6: lockup (18.44 – 21.5) ----------
+      tl.fromTo("#s6-brand", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.6)" }, 18.46);
+      tl.fromTo("#s6-l1", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 18.62);
+      tl.fromTo("#s6-l2", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 18.76);
+      tl.fromTo("#s6-sub", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 19.1);
+      tl.fromTo("#s6-url", { y: 20, scale: 0.94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.5, ease: "power3.out" }, 19.35);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
