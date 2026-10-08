@@ -5,13 +5,15 @@ const PEOPLE = [
   {
     name: 'Luis Eduardo De León Barrientos',
     role: 'CEO',
-    photo: '/assets/Luis De León.png',
+    photo: '/assets/Luis De León.jpg',
+    photoPosition: 'center 18%',
     bio: 'Estudiante de Ciencias de la Computación (USAC). Head of Builders en Open2. IA y ciberseguridad. Miembro IEEE.',
   },
   {
     name: 'Gabriel Enrique Hurtarte García',
     role: 'CTO',
     photo: '/assets/Gabriel Hurtarte.jpeg',
+    photoPosition: 'center',
     bio: 'Ingeniero fullstack (Flutter, Node.js, Java/Quarkus), con más de 4 años de experiencia. Operations lead en Penka. Integración de pasarelas de pago.',
   },
 ] as const
@@ -26,7 +28,12 @@ export default function TeamSection() {
       <div className="team-grid">
         {PEOPLE.map((person) => (
           <article key={person.name} className="team-card">
-            <img src={person.photo} alt="" className="team-photo" />
+            <img
+              src={person.photo}
+              alt=""
+              className="team-photo"
+              style={{ objectPosition: person.photoPosition }}
+            />
             <h3>{person.name}</h3>
             <p className="team-role">{person.role}</p>
             <p className="team-bio">{person.bio}</p>

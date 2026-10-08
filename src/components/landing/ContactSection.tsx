@@ -17,10 +17,6 @@ export default function ContactSection() {
             Ver el prototipo
           </a>
         </div>
-        <p className="contact-stage">
-          Prototipo para Android (demo), en validación. Sin ingresos todavía. Siguiente paso: un
-          piloto con un banco o cooperativa en Guatemala.
-        </p>
       </div>
     </section>
   )

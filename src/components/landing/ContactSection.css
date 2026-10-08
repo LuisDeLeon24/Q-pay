@@ -82,11 +82,3 @@
   text-decoration: underline;
   text-underline-offset: 4px;
 }
-
-.contact-stage {
-  max-width: 560px;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.55;
-  color: var(--text-muted);
-}

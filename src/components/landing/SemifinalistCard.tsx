@@ -11,7 +11,8 @@ export default function SemifinalistCard() {
         <h3>INNOVATECH</h3>
         <p>
           Hackathon de innovación financiera organizado por la Asociación Bancaria de Guatemala y la
-          Escuela Bancaria de Guatemala, en el marco de CORETIC 2026.
+          Escuela Bancaria de Guatemala, en el marco de CORETIC 2026. Como semifinalistas, estuvimos
+          entre los 5 mejores proyectos.
         </p>
       </div>
     </article>
